@@ -36,7 +36,7 @@ jobs:
             const { owner, repo } = context.repo;
             const currentRunId = context.runId;
             const currentRunNumber = context.runNumber;
-            const workflowFile = 'release-v2.yml';
+            const workflowFile = 'build.yml';
 
             core.info(`This release: id=${currentRunId} #${currentRunNumber}`);
 
