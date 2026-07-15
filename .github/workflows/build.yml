@@ -1,0 +1,50 @@
+name: Sleep Command Examples
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  test-build-stg:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print start time
+        run: date
+
+      - name: Sleep for 15 seconds on Linux
+        run: sleep 15s
+        shell: bash
+
+      - name: Print end time
+        run: date
+
+  pre-production-approval:
+    needs: [test-build-stg]
+    runs-on: platform-eng-ent-v2-dual
+    environment: pre-production-approval
+    steps:
+      - name: Pre Production Approval
+        run: echo "Approval to proceed production deployment"
+
+  cancel-superseded:
+    needs: [pre-production-approval]
+    permissions:
+      actions: write
+      contents: read
+    uses: ./.github/workflows/cancel-superseded-releases.yml
+    secrets: inherit
+
+  test-build-prd:
+    needs: [pre-production-approval, cancel-superseded]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print start time
+        run: date
+
+      - name: Sleep for 15 seconds on Linux
+        run: sleep 15s
+        shell: bash
+
+      - name: Print end time
+        run: date
