@@ -21,7 +21,7 @@ jobs:
 
   pre-production-approval:
     needs: [test-build-stg]
-    runs-on: platform-eng-ent-v2-dual
+    runs-on: ubuntu-latest
     environment: pre-production-approval
     steps:
       - name: Pre Production Approval

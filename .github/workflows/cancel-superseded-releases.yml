@@ -27,7 +27,7 @@ permissions:
 jobs:
   cancel-superseded:
     name: Cancel older pending releases
-    runs-on: platform-eng-ent-v2-dual
+    runs-on: ubuntu-latest
     steps:
       - name: Cancel older pending release runs
         uses: actions/github-script@v7
