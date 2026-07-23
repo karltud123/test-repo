@@ -16,7 +16,7 @@ jobs:
         run: date
 
       - name: Sleep for 120 seconds on Linux
-        run: sleep 120ss
+        run: sleep 120s
         shell: bash
 
       - name: Print end time
