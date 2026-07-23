@@ -1,0 +1,23 @@
+name: Test concurrency build
+
+on:
+  push:
+  workflow_dispatch:
+
+concurrency:
+  group: test-concurrency-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test-build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print start time
+        run: date
+
+      - name: Sleep for 120 seconds on Linux
+        run: sleep 120s
+        shell: bash
+
+      - name: Print end time
+        run: date
